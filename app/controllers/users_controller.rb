@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :edit]
-  
+
 
   def show
     @user = User.find(params[:id])
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @book = Book.new
     @books = Book.all
     @user = current_user
-  end 
+  end
 
   def edit
     @user = User.find(params[:id])
@@ -35,10 +35,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.follower.all
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followed.all
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
 
-  
+
 end
