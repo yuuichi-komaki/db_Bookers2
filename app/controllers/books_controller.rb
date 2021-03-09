@@ -20,7 +20,6 @@ class BooksController < ApplicationController
     @books = Book.all
     @booknew = Book.new
     @user = current_user
-    # @favorite = Favorite.new 
   end
 
   def create
